@@ -49,27 +49,28 @@
                     <span class="hide-menu">Personal</span>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('admin.dashboard')}}" aria-expanded="false">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span class="hide-menu">Dashboard</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
                     <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                        <i class="icon-Car-Wheel"></i>
-                        <span class="hide-menu">Dashboards </span>
+                        <i class="fas fa-filter"></i>
+                        <span class="hide-menu">Categories </span>
                     </a>
                     <ul aria-expanded="false" class="collapse  first-level">
                         <li class="sidebar-item">
-                            <a href="index.html" class="sidebar-link">
+                            <a href="{{route('category.add')}}" class="sidebar-link">
                                 <i class="icon-Record"></i>
-                                <span class="hide-menu"> Dashboard 1 </span>
+                                <span class="hide-menu"> Add Category</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="index2.html" class="sidebar-link">
+                            <a href="" class="sidebar-link">
                                 <i class="icon-Record"></i>
-                                <span class="hide-menu"> Dashboard 2 </span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="index3.html" class="sidebar-link">
-                                <i class="icon-Record"></i>
-                                <span class="hide-menu"> Dashboard 3 </span>
+                                <span class="hide-menu"> View Categories </span>
                             </a>
                         </li>
 

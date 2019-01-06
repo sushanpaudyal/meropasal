@@ -28,6 +28,9 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
     Route::get('/admin/profile/{id}', 'AdminController@profile')->name('admin.profile');
     Route::post('/admin/update/profile/{id}', 'AdminController@update')->name('admin.update');
+
+
+    Route::match(['get', 'post'], '/admin/add-category', 'CategoryController@addCategory')->name('category.add');
 });
 
 
