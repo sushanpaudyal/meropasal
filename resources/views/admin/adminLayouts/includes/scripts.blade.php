@@ -27,4 +27,6 @@
 <script src="{{asset('public/adminpanel/assets/libs/morris.js/morris.min.js')}}"></script>
 
 <script src="{{asset('public/adminpanel/dist/js/pages/dashboards/dashboard1.js')}}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 @yield('script')

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
+Use Session;
 
 class CategoryController extends Controller
 {
@@ -21,8 +22,14 @@ class CategoryController extends Controller
             }
             $category->parent_id = $data['parent_id'];
             $category->save();
-            return redirect()->back();
+            Session::flash('success', 'Category Has Been Inserted Successfully');
+            return redirect()->route('category.view');
         }
         return view ('admin.categories.add_category');
+    }
+
+    public function viewCategories(){
+        $categories = Category::latest()->get();
+        return view ('admin.categories.view_categories', compact('categories'));
     }
 }
