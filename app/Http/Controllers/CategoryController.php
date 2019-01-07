@@ -51,4 +51,12 @@ class CategoryController extends Controller
         }
         return view ('admin.categories.edit_category')->with(compact('category'));
     }
+
+    public function deleteCategory($id = null){
+        if(!empty($id)){
+            Category::where(['id' => $id])->delete();
+            Session::flash('danger', 'Category Has Been Permanently Deleted');
+            return redirect()->route('category.view');
+        }
+    }
 }

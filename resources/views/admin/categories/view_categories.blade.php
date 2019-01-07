@@ -74,7 +74,7 @@
                                            <a href="{{route('category.edit', $category->id)}}" class="btn btn-info">
                                                <i class="fa fa-edit"></i>
                                            </a>
-                                           <a href="#" class="btn btn-danger">
+                                           <a rel="{{$category->id}}" rel1="delete-category" href="javascript:" class="btn btn-danger deleteRecord">
                                                <i class="fa fa-trash"></i>
                                            </a>
                                        </td>
@@ -106,12 +106,36 @@
 
 @section('style')
     <link href="{{asset('public/adminpanel/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
     @endsection
 
 
 @section('script')
     <script src="{{asset('public/adminpanel/assets/extra-libs/DataTables/datatables.min.js')}}"></script>
     <script src="{{asset('public/adminpanel/dist/js/pages/datatable/datatable-basic.init.js')}}"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js">
+    </script>
+    <script>
+        $(document).ready(function () {
+            $(".deleteRecord").click(function(){
+                var id = $(this).attr('rel');
+                var deleteFunction = $(this).attr('rel1');
+                swal({
+                        title: "Are You Sure",
+                        text: "You will not be able to recover this record again",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "Yes, Delete it!"
+                    },
+                    function(){
+                        window.location.href="/meropasal/admin/"+deleteFunction+"/"+id;
+                    }
+                );
+            });
+        });
+    </script>
 
     <script>
         @if(Session::has('success'))
@@ -121,5 +145,11 @@
             @if(Session::has('info'))
             toastr.info('{{Session::get('info')}}')
         @endif
+
+        @if(Session::has('danger'))
+        toastr.error('{{Session::get('danger')}}')
+        @endif
     </script>
+
+
     @endsection
