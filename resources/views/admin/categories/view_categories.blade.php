@@ -71,7 +71,7 @@
                                            @endif
                                        </td>
                                        <td>
-                                           <a href="#" class="btn btn-info">
+                                           <a href="{{route('category.edit', $category->id)}}" class="btn btn-info">
                                                <i class="fa fa-edit"></i>
                                            </a>
                                            <a href="#" class="btn btn-danger">
@@ -117,5 +117,9 @@
         @if(Session::has('success'))
             toastr.success('{{Session::get('success')}}')
             @endif
+
+            @if(Session::has('info'))
+            toastr.info('{{Session::get('info')}}')
+        @endif
     </script>
     @endsection

@@ -32,4 +32,23 @@ class CategoryController extends Controller
         $categories = Category::latest()->get();
         return view ('admin.categories.view_categories', compact('categories'));
     }
+
+
+    public function editCategory(Request $request, $id = null){
+        $category = Category::where(['id' => $id])->first();
+
+        if($request->isMethod('post')){
+            $data = $request->all();
+            if(empty($data['status'])){
+                $data['status'] = "0";
+            } else {
+                $data['status'] = "1";
+            }
+            Category::where(['id' => $id])->update(['name' => ucwords(strtolower($data['name'])) , 'parent_id' => $data['parent_id'] , 'description' => $data['description'] , 'slug' => str_slug($data['name']) , 'status' => $data['status']
+                ]);
+            Session::flash('info', 'Category Has Been Updated');
+            return redirect()->route('category.view');
+        }
+        return view ('admin.categories.edit_category')->with(compact('category'));
+    }
 }
