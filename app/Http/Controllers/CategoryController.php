@@ -25,7 +25,9 @@ class CategoryController extends Controller
             Session::flash('success', 'Category Has Been Inserted Successfully');
             return redirect()->route('category.view');
         }
-        return view ('admin.categories.add_category');
+
+        $levels = Category::where(['parent_id' => 0])->get();
+        return view ('admin.categories.add_category', compact('levels'));
     }
 
     public function viewCategories(){
@@ -49,7 +51,9 @@ class CategoryController extends Controller
             Session::flash('info', 'Category Has Been Updated');
             return redirect()->route('category.view');
         }
-        return view ('admin.categories.edit_category')->with(compact('category'));
+        $levels = Category::where(['parent_id' => 0])->get();
+
+        return view ('admin.categories.edit_category')->with(compact('category', 'levels'));
     }
 
     public function deleteCategory($id = null){

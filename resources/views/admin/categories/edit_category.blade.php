@@ -46,6 +46,9 @@
                                 <div class="col-10">
                                     <select class="custom-select col-12" name="parent_id" id="parent_id">
                                         <option value="0">Main Category</option>
+                                        @foreach($levels as $level)
+                                            <option value="{{$level->id}}" @if($level->id == $category->parent_id)  selected @endif>{{$level->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

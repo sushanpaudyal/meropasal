@@ -58,7 +58,16 @@
                                    <tr>
                                        <td>{{$loop->index +1}}</td>
                                        <td>{{$category->name}}</td>
-                                       <td>{{$category->parent_id}}</td>
+                                       <td>
+                                           @if($category->parent_id == 0)
+                                               <span class="badge badge-primary">{{ 'Main Category' }}</span>
+                                               @endif
+                                           @foreach($categories as $c)
+                                               @if($c->id == $category->parent_id)
+                                                   <span class="badge badge-info">{{ $c->name }}</span>
+                                                   @endif
+                                               @endforeach
+                                       </td>
                                        <td>
                                            {{str_limit($category->description, 40, '[...]')}}
                                        </td>
