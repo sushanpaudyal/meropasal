@@ -68,9 +68,11 @@
                                             </a>
                                             <a rel="{{$product->id}}" rel1="delete-product" href="javascript:" class="btn btn-danger deleteRecord">
                                                 <i class="fa fa-trash"></i>
-                                                <a data-toggle="modal" data-target="#myModal{{$product->id}}" class="btn btn-warning">
-                                                    <i class="fa fa-eye"></i>
-                                                </a>
+
+                                            </a>
+
+                                            <a data-toggle="modal" data-target="#myModal{{$product->id}}" class="btn btn-warning">
+                                                <i class="fa fa-eye"></i>
                                             </a>
                                         </td>
                                     </tr>
