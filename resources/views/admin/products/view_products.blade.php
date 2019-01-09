@@ -63,10 +63,10 @@
                                         </td>
                                         <td>{{$product->price}}</td>
                                         <td>
-                                            <a href="" class="btn btn-info">
+                                            <a href="{{route('product.edit', ['id' => $product->id])}}" class="btn btn-info">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a rel="" rel1="delete-category" href="javascript:" class="btn btn-danger deleteRecord">
+                                            <a rel="{{$product->id}}" rel1="delete-product" href="javascript:" class="btn btn-danger deleteRecord">
                                                 <i class="fa fa-trash"></i>
                                                 <a data-toggle="modal" data-target="#myModal{{$product->id}}" class="btn btn-warning">
                                                     <i class="fa fa-eye"></i>
