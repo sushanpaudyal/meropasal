@@ -68,9 +68,37 @@
                                             </a>
                                             <a rel="" rel1="delete-category" href="javascript:" class="btn btn-danger deleteRecord">
                                                 <i class="fa fa-trash"></i>
+                                                <a data-toggle="modal" data-target="#myModal{{$product->id}}" class="btn btn-warning">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
                                             </a>
                                         </td>
                                     </tr>
+
+
+                                    <div id="myModal{{$product->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="myModalLabel">{{$product->product_name}}</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p><strong>Product Code : </strong> {{$product->product_code}}</p>
+                                                    <p><strong>Product Color : </strong> {{$product->prodcut_color}}</p>
+                                                    <p><strong>Product Price : </strong> {{$product->price}}</p>
+                                                    <p><strong>Description</strong></p>
+                                                    {!! htmlspecialchars_decode($product->description) !!}
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-info waves-effect" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                    </div>
                                     @endforeach
                                 </tbody>
 
