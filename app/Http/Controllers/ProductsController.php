@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Product;
+use App\ProductsAttribute;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use File;
@@ -153,6 +154,38 @@ class ProductsController extends Controller
         $product->delete();
         Session::flash('danger', 'Product Deleted');
         return redirect()->route('product.view');
+    }
+
+    public function addAttributes(Request $request, $id = null){
+        $productDetails = Product::with('attributes')->where(['id' => $id])->first();
+
+        if($request->isMethod('post')){
+            $data = $request->all();
+//            echo "<pre>"; print_r($data); die;
+            foreach($data['sku'] as $key => $val){
+                if(!empty($val)){
+                    $attribute = new ProductsAttribute;
+                    $attribute->product_id = $data['product_id'];
+                    $attribute->sku = $val;
+                    $attribute->size = $data['size'][$key];
+                    $attribute->price = $data['price'][$key];
+                    $attribute->stock = $data['stock'][$key];
+                    $attribute->save();
+                }
+            }
+            Session::flash('success', 'Attribute Has Been Added Successfully');
+            return redirect()->back();
+
+        }
+
+        return view ('admin.products.add_attributes', compact('productDetails'));
+    }
+
+    public function deleteAttribute($id){
+        $attribute = ProductsAttribute::findOrFail($id);
+        $attribute->delete();
+        Session::flash('danger', 'Product Attribute Has Been Deleted Successfully');
+        return redirect()->back();
     }
 
 }

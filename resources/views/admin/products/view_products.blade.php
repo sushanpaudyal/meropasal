@@ -74,6 +74,10 @@
                                             <a data-toggle="modal" data-target="#myModal{{$product->id}}" class="btn btn-warning">
                                                 <i class="fa fa-eye"></i>
                                             </a>
+
+                                            <a href="{{route('product.addattribute', $product->id)}}" class="btn btn-success">
+                                                <i class="fa fa-plus"></i>
+                                            </a>
                                         </td>
                                     </tr>
 
