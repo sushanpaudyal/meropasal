@@ -9,8 +9,8 @@ use App\Product;
 class IndexController extends Controller
 {
     public function index(){
-        $products = Product::latest()->get();
+        $productsAll = Product::latest()->get();
         $categories = Category::with('categories')->where(['parent_id' => 0])->get();
-        return view ('frontend.index',compact('products', 'categories'));
+        return view ('frontend.index',compact('productsAll', 'categories'));
     }
 }
