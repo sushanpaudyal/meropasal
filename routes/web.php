@@ -18,6 +18,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+Route::get('/products/{slug}', 'FrontController@products')->name('products');
+
 
 //Route::get('/adminLogin', 'AdminController@login')->name('admin.login');
 Route::match(['get', 'post'], '/adminLogin', 'AdminController@login')->name('admin.login');
