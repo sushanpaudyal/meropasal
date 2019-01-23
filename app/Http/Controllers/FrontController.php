@@ -16,7 +16,6 @@ class FrontController extends Controller
             abort(404);
         }
 
-
 //        Get all the categories and sub categories
         $categories = Category::with('categories')->where(['parent_id' => 0])->get();
         $categoriesDetails = Category::where(['slug' => $slug])->first();
@@ -34,15 +33,13 @@ class FrontController extends Controller
             $productsAll = Product::where(['category_id' => $categoriesDetails->id])->get();
         }
 
-
-
-
-
-
-
-
-
-
         return view ('frontend.products.listing', compact('categoriesDetails', 'productsAll', 'categories'));
+    }
+
+
+    public function product($id = null){
+        $productDetails = Product::where('id', $id)->first();
+        $categories = Category::with('categories')->where(['parent_id' => 0])->get();
+        return view ('frontend.products.detail', compact('productDetails', 'categories'));
     }
 }

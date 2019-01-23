@@ -188,4 +188,29 @@ class ProductsController extends Controller
         return redirect()->back();
     }
 
+
+
+    public function deleteProductImage($id = null){
+        $productImage = Product::where(['id' => $id])->first();
+
+        $large_image_path = 'public/adminpanel/uploads/products/large/';
+        $medium_image_path = 'public/adminpanel/uploads/products/medium/';
+        $small_image_path = 'public/adminpanel/uploads/products/small/';
+
+        if(file_exists($large_image_path.$productImage->image)){
+            unlink($large_image_path.$productImage->image);
+        }
+        if(file_exists($small_image_path.$productImage->image)){
+            unlink($small_image_path.$productImage->image);
+        }
+        if(file_exists($medium_image_path.$productImage->image)){
+            unlink($medium_image_path.$productImage->image);
+        }
+
+        Product::where(['id' => $id])->update(['image' => '']);
+        Session::flash('danger', 'Product Image Has Been Deleted Successfully');
+        return redirect()->back();
+
+    }
+
 }

@@ -20,6 +20,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/products/{slug}', 'FrontController@products')->name('products');
 
+Route::get('/product/{id}', 'FrontController@product')->name('single.products');
+
 
 //Route::get('/adminLogin', 'AdminController@login')->name('admin.login');
 Route::match(['get', 'post'], '/adminLogin', 'AdminController@login')->name('admin.login');
@@ -45,6 +47,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::match(['get', 'post'], '/admin/add-attribute/{id}', 'ProductsController@addAttributes')->name('product.addattribute');
 
     Route::get('/admin/delete-attribute/{id}', 'ProductsController@deleteAttribute')->name('delete.attribute');
+
+    Route::get('/admin/delete-product-image/{id}', 'ProductsController@deleteProductImage')->name('delete-productimage');
 });
 
 

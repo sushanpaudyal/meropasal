@@ -83,7 +83,11 @@
                                 <div class="col-10">
                                     <input class="form-control" type="file" name="image" id="image">
                                     <input type="hidden" name="current_image" value="{{$productDetails->image}}">
+                                    @if(!empty($productDetails->image))
                                     <img src="{{asset('public/adminpanel/uploads/products/small/'.$productDetails->image)}}" alt="" width="100px;">
+                                    <br>
+                                    <a href="{{route('delete-productimage', $productDetails->id)}}" class="text-danger">Delete Image</a>
+                                  @endif
                                 </div>
                             </div>
 
