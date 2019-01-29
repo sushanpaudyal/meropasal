@@ -213,4 +213,11 @@ class ProductsController extends Controller
 
     }
 
+    public function getProductPrice(Request $request){
+        $data = $request->all();
+        $proArr = explode("-", $data['idSize']);
+        $proAttr = ProductsAttribute::where(['product_id' => $proArr[0], 'size' => $proArr[1]])->first();
+        echo $proAttr->price;
+    }
+
 }

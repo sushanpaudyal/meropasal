@@ -1,5 +1,7 @@
 /*price range*/
 
+$ = jQuery.noConflict();
+
  $('#sl2').slider();
 
 	var RGBChange = function() {
@@ -28,3 +30,7 @@ $(document).ready(function(){
 		});
 	});
 });
+
+
+
+
