@@ -12,15 +12,22 @@
                     <div class="product-details"><!--product-details-->
                         <div class="col-sm-5">
                             <div class="view-product">
-                                <img class="mainImage" src="{{asset('public/adminpanel/uploads/products/small/'.$productDetails->image)}}" alt="" />
+                                <div class="easyzoom easyzoom--overlay easyzoom--with-thumbnails">
+                                    <a href="{{asset('public/adminpanel/uploads/products/small/'.$productDetails->image)}}">
+                                        <img class="mainImage" src="{{asset('public/adminpanel/uploads/products/small/'.$productDetails->image)}}" alt="" />
+                                    </a>
+                                </div>
+                                {{--<h3>ZOOM</h3>--}}
                             </div>
                             <div id="similar-product" class="carousel slide" data-ride="carousel">
 
                                 <!-- Wrapper for slides -->
                                 <div class="carousel-inner">
-                                    <div class="item active">
+                                    <div class="item active thumbnails">
                                         @foreach($productAltImages as $altImage)
-                                        <img class="changeImage" src="{{asset('public/adminpanel/uploads/products/small/'.$altImage->image)}}" alt="" style="width: 80px;">
+                                            <a href="{{asset('public/adminpanel/uploads/products/small/'.$altImage->image)}}">
+                                                <img class="changeImage" src="{{asset('public/adminpanel/uploads/products/small/'.$altImage->image)}}" alt="" style="width: 80px;">
+                                            </a>
                                         @endforeach
                                     </div>
 

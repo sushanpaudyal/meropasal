@@ -164,7 +164,11 @@
 <script src="{{asset('public/frontpanel/js/jquery.scrollUp.min.js')}}"></script>
 <script src="{{asset('public/frontpanel/js/price-range.js')}}"></script>
 <script src="{{asset('public/frontpanel/js/jquery.prettyPhoto.js')}}"></script>
+<script src="{{asset('public/frontpanel/js/easyzoom.js')}}"></script>
+
 <script src="{{asset('public/frontpanel/js/main.js')}}"></script>
+
+
 
 <script>
     $(document).ready(function () {
@@ -198,6 +202,38 @@
              var image = $(this).attr('src');
              $(".mainImage").attr("src", image);
          }) ;
+    });
+</script>
+
+<script>
+    // Instantiate EasyZoom instances
+    var $easyzoom = $('.easyzoom').easyZoom();
+
+    // Setup thumbnails example
+    var api1 = $easyzoom.filter('.easyzoom--with-thumbnails').data('easyZoom');
+
+    $('.thumbnails').on('click', 'a', function(e) {
+        var $this = $(this);
+
+        e.preventDefault();
+
+        // Use EasyZoom's `swap` method
+        api1.swap($this.data('standard'), $this.attr('href'));
+    });
+
+    // Setup toggles example
+    var api2 = $easyzoom.filter('.easyzoom--with-toggle').data('easyZoom');
+
+    $('.toggle').on('click', function() {
+        var $this = $(this);
+
+        if ($this.data("active") === true) {
+            $this.text("Switch on").data("active", false);
+            api2.teardown();
+        } else {
+            $this.text("Switch off").data("active", true);
+            api2._init();
+        }
     });
 </script>
 
