@@ -19,20 +19,11 @@
                                 <!-- Wrapper for slides -->
                                 <div class="carousel-inner">
                                     <div class="item active">
-                                        <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-                                        <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-                                        <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
+                                        @foreach($productAltImages as $altImage)
+                                        <img src="{{asset('public/adminpanel/uploads/products/small/'.$altImage->image)}}" alt="" style="width: 80px;">
+                                        @endforeach
                                     </div>
-                                    <div class="item">
-                                        <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-                                        <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-                                        <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
-                                    </div>
-                                    <div class="item">
-                                        <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-                                        <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-                                        <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
-                                    </div>
+
 
                                 </div>
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Product;
 use App\ProductsAttribute;
+use App\ProductsImage;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -41,7 +42,10 @@ class FrontController extends Controller
     public function product($id = null){
         $productDetails = Product::with('attributes')->where('id', $id)->first();
         $categories = Category::with('categories')->where(['parent_id' => 0])->get();
-        return view ('frontend.products.detail', compact('productDetails', 'categories'));
+
+        $productAltImages = ProductsImage::where(['product_id' => $id])->get();
+
+        return view ('frontend.products.detail', compact('productDetails', 'categories', 'productAltImages'));
     }
 
 
