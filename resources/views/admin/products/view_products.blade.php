@@ -78,6 +78,10 @@
                                             <a href="{{route('product.addattribute', $product->id)}}" class="btn btn-success">
                                                 <i class="fa fa-plus"></i>
                                             </a>
+
+                                            <a href="{{route('alt.image', $product->id)}}" class="btn btn-info">
+                                                <i class="fa fa-images"> </i>
+                                            </a>
                                         </td>
                                     </tr>
 

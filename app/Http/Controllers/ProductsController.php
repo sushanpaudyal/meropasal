@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Product;
 use App\ProductsAttribute;
+use App\ProductsImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use File;
@@ -242,4 +243,60 @@ class ProductsController extends Controller
         echo $proAttr->price;
     }
 
+
+    public function addImages(Request $request, $id){
+        $productDetails = Product::with('attributes')->where(['id' => $id])->first();
+        $productImages = ProductsImage::where(['product_id' => $id])->get();
+
+        if($request->isMethod('post')){
+            $data = $request->all();
+//            echo "<pre>"; print_r($data); die;
+            if($request->hasFile('image')){
+                $files = $request->file('image');
+                foreach($files as $file){
+                    $image = new ProductsImage;
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = rand(1111,99887878).'.'.$extension;
+
+                    $large_image_path = 'public/adminpanel/uploads/products/large/'.$filename;
+                    $medium_image_path = 'public/adminpanel/uploads/products/medium/'.$filename;
+                    $small_image_path = 'public/adminpanel/uploads/products/small/'.$filename;
+
+                    Image::make($file)->save($large_image_path);
+                    Image::make($file)->resize(600,600)->save($medium_image_path);
+                    Image::make($file)->resize(300,300)->save($small_image_path);
+
+                    $image->image = $filename;
+                    $image->product_id = $data['product_id'];
+                    $image->save();
+                }
+            }
+            Session::flash('success', "Product Image Has Been Succesfully Inserted");
+            return redirect()->back();
+        }
+        return view ('admin.products.add_images', compact('productDetails', 'productImages'));
+    }
+
+
+    public function deleteAltImage($id){
+        $productImage = ProductsImage::where('id', $id)->first();
+
+        $large_image_path = 'public/adminpanel/uploads/products/large/';
+        $medium_image_path = 'public/adminpanel/uploads/products/medium/';
+        $small_image_path = 'public/adminpanel/uploads/products/small/';
+
+        if(file_exists($large_image_path.$productImage->image)){
+            unlink($large_image_path.$productImage->image);
+        }
+        if(file_exists($small_image_path.$productImage->image)){
+            unlink($small_image_path.$productImage->image);
+        }
+        if(file_exists($medium_image_path.$productImage->image)){
+            unlink($medium_image_path.$productImage->image);
+        }
+
+        ProductsImage::where(['id' => $id])->delete();
+        Session::flash('error', 'Product Image Deleted');
+        return redirect()->back();
+    }
 }
