@@ -189,6 +189,16 @@
             });
         });
     });
+
+
+
+    $(document).ready(function () {
+         $(".changeImage").click(function(){
+             // alert("Hello");
+             var image = $(this).attr('src');
+             $(".mainImage").attr("src", image);
+         }) ;
+    });
 </script>
 
 </body>

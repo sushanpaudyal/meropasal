@@ -12,7 +12,7 @@
                     <div class="product-details"><!--product-details-->
                         <div class="col-sm-5">
                             <div class="view-product">
-                                <img src="{{asset('public/adminpanel/uploads/products/small/'.$productDetails->image)}}" alt="" />
+                                <img class="mainImage" src="{{asset('public/adminpanel/uploads/products/small/'.$productDetails->image)}}" alt="" />
                             </div>
                             <div id="similar-product" class="carousel slide" data-ride="carousel">
 
@@ -20,7 +20,7 @@
                                 <div class="carousel-inner">
                                     <div class="item active">
                                         @foreach($productAltImages as $altImage)
-                                        <img src="{{asset('public/adminpanel/uploads/products/small/'.$altImage->image)}}" alt="" style="width: 80px;">
+                                        <img class="changeImage" src="{{asset('public/adminpanel/uploads/products/small/'.$altImage->image)}}" alt="" style="width: 80px;">
                                         @endforeach
                                     </div>
 
