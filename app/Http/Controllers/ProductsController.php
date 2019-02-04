@@ -299,4 +299,17 @@ class ProductsController extends Controller
         Session::flash('error', 'Product Image Deleted');
         return redirect()->back();
     }
+
+
+    public function editAttributes(Request $request, $id){
+        if($request->isMethod('post')){
+            $data = $request->all();
+//            echo "<pre>"; print_r($data); die;
+            foreach($data['idAttr'] as $key => $attr){
+                ProductsAttribute::where(['id' => $data['idAttr'][$key]])->update(['price' => $data['price'][$key], 'stock' => $data['stock'][$key]]);
+            }
+            Session::flash('success', 'Product Attribute Updated');
+            return redirect()->back();
+        }
+    }
 }

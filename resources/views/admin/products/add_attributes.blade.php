@@ -97,6 +97,8 @@
                     <div class="card-body">
                         <h4 class="card-title">Products Attributes</h4>
                         <div class="table-responsive">
+                            <form action="{{route('edit.attribute', $productDetails->id)}}" method="post">
+                                @csrf
                             <table id="zero_config" class="table table-striped table-bordered">
                                 <thead>
                                 <tr>
@@ -111,12 +113,20 @@
                                 <tbody>
                                 @foreach($productDetails['attributes'] as $attribute)
                                     <tr>
-                                        <td>{{$loop->index +1}}</td>
+
+                                        <td>
+                                            <input type="hidden" name="idAttr[]" value="{{$attribute->id}}">
+                                            {{$loop->index +1}}</td>
                                         <td>{{$attribute->sku}}</td>
                                         <td>{{$attribute->size}}</td>
-                                        <td>{{$attribute->price}}</td>
-                                        <td>{{$attribute->stock}}</td>
                                         <td>
+                                            <input type="text" name="price[]" value="{{$attribute->price}}">
+                                        </td>
+                                        <td>
+                                            <input type="text" name="stock[]" value="{{$attribute->stock}}">
+                                        </td>
+                                        <td>
+                                            <input type="submit" value="Update" class="btn btn-primary">
                                             <a rel="{{$attribute->id}}" rel1="delete-attribute" href="javascript:" class="btn btn-danger deleteRecord">
                                                 Delete
                                             </a>
@@ -126,6 +136,7 @@
                                 </tbody>
 
                             </table>
+                            </form>
                         </div>
                     </div>
                 </div>
