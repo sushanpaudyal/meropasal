@@ -45,9 +45,11 @@ class FrontController extends Controller
 
         $productAltImages = ProductsImage::where(['product_id' => $id])->get();
 
+        $relatedProducts = Product::where('id', '!=', $id)->where(['category_id' => $productDetails->category_id])->get();
+
         $total_stock = ProductsAttribute::where('product_id', $id)->sum('stock');
 
-        return view ('frontend.products.detail', compact('productDetails', 'categories', 'productAltImages', 'total_stock'));
+        return view ('frontend.products.detail', compact('productDetails', 'categories', 'productAltImages', 'total_stock', 'relatedProducts'));
     }
 
 
