@@ -43,6 +43,14 @@ class ProductsController extends Controller
                 $product->care = "";
             }
 
+            if(empty($data['status'])){
+                $status = 0;
+            } else {
+                $status = 1;
+            }
+
+            $product->status = $status;
+
             $product->price = $data['price'];
 
 
@@ -125,7 +133,12 @@ class ProductsController extends Controller
             if(empty($data{'care'})){
                 $data['care'] = "";
             }
-            Product::where(['id' => $id])->update(['category_id' => $data['category_id'], 'product_name' => ucwords(strtolower($data['product_name'])), 'product_code' => $data['product_code'], 'prodcut_color' => $data['product_color'], 'price' => $data['price'], 'description' => $data['description'], 'image' => $filename, 'care' => $data['care']
+            if(empty($data['status'])){
+                $status = 0;
+            } else {
+                $status = 1;
+            }
+            Product::where(['id' => $id])->update(['category_id' => $data['category_id'], 'product_name' => ucwords(strtolower($data['product_name'])), 'product_code' => $data['product_code'], 'prodcut_color' => $data['product_color'], 'price' => $data['price'], 'description' => $data['description'], 'image' => $filename, 'care' => $data['care'], 'status' => $status
             ]);
 
             Session::flash('success', 'Products Updated Successfully');

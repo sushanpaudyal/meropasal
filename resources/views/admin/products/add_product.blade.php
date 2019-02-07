@@ -99,6 +99,14 @@
                                 </div>
                             </div>
 
+                            <div class="form-group m-t-40 row">
+                                <label for="status" class="col-2 col-form-label">Status</label>
+                                <div class="col-10">
+                                    <input type="checkbox" name="status" id="status" value="1">
+                                </div>
+                            </div>
+
+
                             <div class="form-group row">
                                 <div class="text-center">
                                     <input type="submit" name="submit" class="btn btn-primary" value="Insert Product">

@@ -58,7 +58,10 @@ class CategoryController extends Controller
 
     public function deleteCategory($id = null){
         if(!empty($id)){
-            Category::where(['id' => $id])->delete();
+            $category = Category::find($id);
+            $cat_sub = Category::where(['parent_id' => $category->id]);
+            $cat_sub->delete();
+            $category->delete();
             Session::flash('danger', 'Category Has Been Permanently Deleted');
             return redirect()->route('category.view');
         }
