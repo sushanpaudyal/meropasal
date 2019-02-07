@@ -24,6 +24,8 @@ Route::get('/product/{id}', 'FrontController@product')->name('single.products');
 
 Route::post('product/get-product-price', 'ProductsController@getProductPrice');
 
+Route::match(['get', 'post'], '/add-cart', 'CartController@addtoCart')->name('addtocart');
+
 //Route::get('/adminLogin', 'AdminController@login')->name('admin.login');
 Route::match(['get', 'post'], '/adminLogin', 'AdminController@login')->name('admin.login');
 

@@ -45,7 +45,23 @@
 
                         </div>
                         <div class="col-sm-7">
-                            <div class="product-information"><!--/product-information-->
+
+
+                            <form action="{{route('addtocart')}}" method="post" name="addtoCartForm" id="addtoCart">
+                                @csrf
+
+                                <input type="hidden" name="product_id" value="{{$productDetails->id}}">
+
+                                <input type="hidden" name="product_name" value="{{$productDetails->product_name}}">
+
+                                <input type="hidden" name="product_code" value="{{$productDetails->product_code}}">
+
+                                <input type="hidden" name="prodcut_color" value="{{$productDetails->prodcut_color}}">
+
+                                <input type="hidden" name="price" value="{{$productDetails->price}}">
+
+
+                                <div class="product-information"><!--/product-information-->
                                 <h2>{{$productDetails->product_name}}</h2>
                                 <p>Product Code: {{$productDetails->product_code}}</p>
                                 
@@ -62,9 +78,9 @@
                                 <span>
 									<span id="getPrice">Rs. {{$productDetails->price}}</span>
 									<label>Quantity:</label>
-									<input type="text" value="3" />
+									<input type="text" value="1" name="quantity" />
                                     @if($total_stock > 0)
-									<button type="button" class="btn btn-fefault cart cartButton" id="cartButton">
+									<button type="submit" class="btn btn-fefault cart cartButton" id="cartButton">
 										<i class="fa fa-shopping-cart"></i>
 										Add to cart
 									</button>
@@ -77,6 +93,7 @@
                                 </p>
 
                             </div><!--/product-information-->
+                            </form>
                         </div>
                     </div><!--/product-details-->
 
