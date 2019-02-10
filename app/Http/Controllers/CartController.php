@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use Illuminate\Http\Request;
 use DB;
 use Session;
@@ -24,9 +25,15 @@ class CartController extends Controller
 
             $sizeArr = explode("-", $data['size']);
 
-            DB::table('carts')->insert([
-                'product_id' => $data['product_id'] , 'product_name' => $data['product_name'] , 'product_code' => $data['product_code'], 'product_color' => $data['prodcut_color'] , 'price' => $data['price'], 'size' => $sizeArr[1], 'quantity' => $data['quantity'], 'user_email' => $data['user_email'], 'session_id' => $session_id
-            ]);
+            $countProducts = DB::table('carts')->where(['product_id' => $data['product_id'], 'product_color' => $data['prodcut_color'], 'size' => $sizeArr[1] , 'session_id' => $session_id])->count();
+
+            if($countProducts > 0){
+                return redirect()->back()->with('flash_message_success', 'Cart Item Already Exixts');
+            } else {
+                DB::table('carts')->insert([
+                    'product_id' => $data['product_id'] , 'product_name' => $data['product_name'] , 'product_code' => $data['product_code'], 'product_color' => $data['prodcut_color'] , 'price' => $data['price'], 'size' => $sizeArr[1], 'quantity' => $data['quantity'], 'user_email' => $data['user_email'], 'session_id' => $session_id
+                ]);
+            }
 
             return redirect()->route('cart');
         }
@@ -40,8 +47,17 @@ class CartController extends Controller
                $productDetails = Product::where('id', $product->product_id)->first();
                $userCart[$key]->image = $productDetails->image;
            }
-
-
         return view ('frontend.products.cart', compact('userCart'));
+    }
+
+    public function deleteCart($id){
+        $cart = Cart::findOrFail($id);
+        $cart->delete();
+        return redirect()->back()->with('flash_message_success', 'Cart Item Deleted');
+    }
+
+    public function updateCartQuantity($id, $quantity){
+        DB::table('carts')->where('id', $id)->increment('quantity', $quantity);
+        return redirect()->back()->with('flash_message_success', 'Cart Updated');
     }
 }

@@ -28,6 +28,10 @@ Route::match(['get', 'post'], '/add-cart', 'CartController@addtoCart')->name('ad
 
 Route::match(['get', 'post'], '/cart', 'CartController@cart')->name('cart');
 
+Route::get('/cart/delete-product/{id}', 'CartController@deleteCart')->name('delete.cart');
+
+Route::get('/cart/update-quantity/{id}/{quantity}', 'CartController@updateCartQuantity')->name('update.cart');
+
 //Route::get('/adminLogin', 'AdminController@login')->name('admin.login');
 Route::match(['get', 'post'], '/adminLogin', 'AdminController@login')->name('admin.login');
 
