@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cart;
+use App\ProductsAttribute;
 use Illuminate\Http\Request;
 use DB;
 use Session;
@@ -30,8 +31,11 @@ class CartController extends Controller
             if($countProducts > 0){
                 return redirect()->back()->with('flash_message_success', 'Cart Item Already Exixts');
             } else {
+
+                $getSKU = ProductsAttribute::select('sku')->where(['product_id' => $data['product_id'], 'size' => $sizeArr[1]])->first();
+
                 DB::table('carts')->insert([
-                    'product_id' => $data['product_id'] , 'product_name' => $data['product_name'] , 'product_code' => $data['product_code'], 'product_color' => $data['prodcut_color'] , 'price' => $data['price'], 'size' => $sizeArr[1], 'quantity' => $data['quantity'], 'user_email' => $data['user_email'], 'session_id' => $session_id
+                    'product_id' => $data['product_id'] , 'product_name' => $data['product_name'] , 'product_code' => $getSKU->sku, 'product_color' => $data['prodcut_color'] , 'price' => $data['price'], 'size' => $sizeArr[1], 'quantity' => $data['quantity'], 'user_email' => $data['user_email'], 'session_id' => $session_id
                 ]);
             }
 
@@ -57,7 +61,19 @@ class CartController extends Controller
     }
 
     public function updateCartQuantity($id, $quantity){
-        DB::table('carts')->where('id', $id)->increment('quantity', $quantity);
-        return redirect()->back()->with('flash_message_success', 'Cart Updated');
+
+        $getCartDetails = DB::table('carts')->where('id', $id)->first();
+        $getAttributeStock = ProductsAttribute::where('sku', $getCartDetails->product_code)->first();
+
+        $updated_qunatity = $getCartDetails->quantity + $quantity;
+
+        if($getAttributeStock->stock >= $updated_qunatity){
+            DB::table('carts')->where('id', $id)->increment('quantity', $quantity);
+            return redirect()->back()->with('flash_message_success', 'Cart Has Been Updated');
+        } else {
+            return redirect()->back()->with('flash_message_success', 'Prodcut Required Quantity is Out of Stock');
+        }
+
+
     }
 }
