@@ -28,4 +28,10 @@ class CouponsController extends Controller
         }
         return view ('admin.products.add_coupon');
     }
+
+
+    public function viewCoupons(){
+        $coupons = Coupon::latest()->get();
+        return view ('admin.products.view_coupons', compact('coupons'));
+    }
 }
