@@ -81,8 +81,12 @@
                                             @if($data->status == 1) Active @else In Active @endif
                                         </td>
                                         <td>
-                                            <a href="" class="btn btn-info">
+                                            <a href="{{route('edit.coupon', ['id' => $data->id])}}" class="btn btn-info">
                                                 <i class="fa fa-edit"></i>
+                                            </a>
+
+                                            <a href="javascript:" rel="{{$data->id}}" rel1="delete-coupon" class="btn btn-danger deleteRecord">
+                                                <i class="fa fa-trash"></i>
                                             </a>
                                         </td>
                                     </tr>
