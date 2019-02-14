@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa7e7417-577e-41d0-8337-b16cf4e31d3e" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CouponsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/CouponsController.php" />
       <change beforePath="$PROJECT_DIR$/documentation.docx" afterPath="$PROJECT_DIR$/documentation.docx" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/products/add_coupon.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/products/add_coupon.blade.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,21 +28,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CouponsController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CouponsController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CouponsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="3" lean-forward="false" selection-start-line="8" selection-start-column="3" selection-end-line="10" selection-end-column="5" />
-              <folding />
+            <state relative-caret-position="170">
+              <caret line="10" column="3" lean-forward="false" selection-start-line="10" selection-start-column="3" selection-end-line="29" selection-end-column="5" />
+              <folding>
+                <element signature="e#40#55#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="add_coupon.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="add_coupon.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/admin/products/add_coupon.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="526">
-              <caret line="173" column="37" lean-forward="false" selection-start-line="173" selection-start-column="37" selection-end-line="173" selection-end-column="37" />
+            <state relative-caret-position="359">
+              <caret line="111" column="35" lean-forward="true" selection-start-line="111" selection-start-column="35" selection-end-line="111" selection-end-column="35" />
               <folding>
                 <marker date="1550149019492" expanded="true" signature="9:42" ph="..." />
                 <marker date="1550149019492" expanded="true" signature="54:63" ph="..." />
@@ -148,9 +151,9 @@
         <option value="$PROJECT_DIR$/resources/views/frontend/products/cart.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_02_12_130749_create_coupons_table.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/CouponsController.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/adminLayouts/includes/sidebar.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/products/add_coupon.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/CouponsController.php" />
       </list>
     </option>
   </component>
@@ -451,12 +454,12 @@
       <workItem from="1549801877009" duration="3451000" />
       <workItem from="1549974461676" duration="2700000" />
       <workItem from="1549977868186" duration="12000" />
-      <workItem from="1550147978762" duration="1039000" />
+      <workItem from="1550147978762" duration="1450000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79199000" />
+    <option name="totallyTimeSpent" value="79610000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1440" y="0" width="1024" height="768" extended-state="0" />
@@ -903,26 +906,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/adminLayouts/includes/sidebar.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="116" column="37" lean-forward="false" selection-start-line="116" selection-start-column="37" selection-end-line="116" selection-end-column="37" />
-          <folding>
-            <marker date="1550148265881" expanded="true" signature="549:614" ph="..." />
-            <marker date="1550148265881" expanded="true" signature="836:855" ph="..." />
-            <marker date="1550148265881" expanded="true" signature="1212:1233" ph="..." />
-            <marker date="1550148265881" expanded="true" signature="1540:1581" ph="..." />
-            <marker date="1550148265881" expanded="true" signature="2396:2417" ph="..." />
-            <marker date="1550148265881" expanded="true" signature="3026:3050" ph="..." />
-            <marker date="1550148265881" expanded="true" signature="3733:3754" ph="..." />
-            <marker date="1550148265881" expanded="true" signature="4069:4091" ph="..." />
-            <marker date="1550148265881" expanded="true" signature="4850:4870" ph="..." />
-            <marker date="1550148265881" expanded="true" signature="5184:5205" ph="..." />
-            <marker date="1550148265881" expanded="true" signature="5963:5982" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/products/add_product.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
@@ -955,18 +938,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CouponsController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/adminLayouts/includes/sidebar.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="3" lean-forward="false" selection-start-line="8" selection-start-column="3" selection-end-line="10" selection-end-column="5" />
-          <folding />
+        <state relative-caret-position="449">
+          <caret line="116" column="37" lean-forward="false" selection-start-line="116" selection-start-column="37" selection-end-line="116" selection-end-column="37" />
+          <folding>
+            <marker date="1550148265881" expanded="true" signature="549:614" ph="..." />
+            <marker date="1550148265881" expanded="true" signature="836:855" ph="..." />
+            <marker date="1550148265881" expanded="true" signature="1212:1233" ph="..." />
+            <marker date="1550148265881" expanded="true" signature="1540:1581" ph="..." />
+            <marker date="1550148265881" expanded="true" signature="2396:2417" ph="..." />
+            <marker date="1550148265881" expanded="true" signature="3026:3050" ph="..." />
+            <marker date="1550148265881" expanded="true" signature="3733:3754" ph="..." />
+            <marker date="1550148265881" expanded="true" signature="4069:4091" ph="..." />
+            <marker date="1550148265881" expanded="true" signature="4850:4870" ph="..." />
+            <marker date="1550148265881" expanded="true" signature="5184:5205" ph="..." />
+            <marker date="1550148265881" expanded="true" signature="5963:5982" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/products/add_coupon.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="526">
-          <caret line="173" column="37" lean-forward="false" selection-start-line="173" selection-start-column="37" selection-end-line="173" selection-end-column="37" />
+        <state relative-caret-position="359">
+          <caret line="111" column="35" lean-forward="true" selection-start-line="111" selection-start-column="35" selection-end-line="111" selection-end-column="35" />
           <folding>
             <marker date="1550149019492" expanded="true" signature="9:42" ph="..." />
             <marker date="1550149019492" expanded="true" signature="54:63" ph="..." />
@@ -975,6 +970,16 @@
             <marker date="1550149019492" expanded="true" signature="1479:1511" ph="..." />
             <marker date="1550149019492" expanded="true" signature="4481:4488" ph="..." />
             <marker date="1550149019492" expanded="true" signature="4605:4613" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CouponsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="3" lean-forward="false" selection-start-line="10" selection-start-column="3" selection-end-line="29" selection-end-column="5" />
+          <folding>
+            <element signature="e#40#55#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
