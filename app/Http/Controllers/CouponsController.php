@@ -63,4 +63,17 @@ class CouponsController extends Controller
         Session::flash('error', 'Deleted');
         return redirect()->route('view.coupons');
     }
+
+
+    public function applyCoupon(Request $request){
+        $data = $request->all();
+
+        $couponCount = Coupon::where('coupon_code' , $data['coupon_code'])->count();
+
+        if($couponCount == 0 ){
+            return redirect()->back()->with('flash_message_success', 'Coupon Is Invalid');
+        } else {
+            echo "Success"; die;
+        }
+    }
 }

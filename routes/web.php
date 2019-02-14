@@ -32,6 +32,12 @@ Route::get('/cart/delete-product/{id}', 'CartController@deleteCart')->name('dele
 
 Route::get('/cart/update-quantity/{id}/{quantity}', 'CartController@updateCartQuantity')->name('update.cart');
 
+
+//Coupons
+Route::post('/cart/apply-coupon', 'CouponsController@applyCoupon')->name('apply.coupon');
+
+
+
 //Route::get('/adminLogin', 'AdminController@login')->name('admin.login');
 Route::match(['get', 'post'], '/adminLogin', 'AdminController@login')->name('admin.login');
 

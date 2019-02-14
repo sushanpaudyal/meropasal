@@ -78,10 +78,16 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="chose_area">
-
-
-                        <a class="btn btn-default update" href="">Get Quotes</a>
-                        <a class="btn btn-default check_out" href="">Continue</a>
+                        <ul class="user_option">
+                            <li>
+                                <label>Coupon Code</label>
+                                <form action="{{route('apply.coupon')}}" method="post">
+                                    @csrf
+                                    <input type="text" name="coupon_code">
+                                    <input type="submit" value="Apply" class="btn btn-primary">
+                                </form>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <div class="col-sm-6">
