@@ -102,6 +102,10 @@
 
 @endsection
 
+@section('style')
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    @endsection
+
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js?fbclid=IwAR0gve14W2V8EXN6DR0mdbmJ6_pcNkxyRRcUjMPer_eKY7pwwSj8E-WcaKM">
     </script>
@@ -160,5 +164,15 @@
             });
         });
 
+    </script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            $( "#expiry_date" ).datepicker({
+                minDate: 0,
+                dateFormat: 'yy-mm-dd'
+            });
+        } );
     </script>
 @endsection
