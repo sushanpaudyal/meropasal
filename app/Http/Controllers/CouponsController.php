@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Coupon;
 use Illuminate\Http\Request;
 use Session;
+use DB;
 
 class CouponsController extends Controller
 {
@@ -66,14 +67,49 @@ class CouponsController extends Controller
 
 
     public function applyCoupon(Request $request){
-        $data = $request->all();
 
+        Session::forget('CouponAmount');
+        Session::forget('CouponCode');
+
+
+        $data = $request->all();
         $couponCount = Coupon::where('coupon_code' , $data['coupon_code'])->count();
 
         if($couponCount == 0 ){
             return redirect()->back()->with('flash_message_success', 'Coupon Is Invalid');
         } else {
-            echo "Success"; die;
+            $couponDetails = Coupon::where('coupon_code', $data['coupon_code'])->first();
+            // checking if coupon is inactive
+            if($couponDetails->status == 0){
+            return redirect()->back()->with('flash_message_success', 'Coupon Is Not Active');
+            }
+
+            // checking coupons exipiry date
+            $expiry_date = $couponDetails->expiry_date;
+            $current_date = date('Y-m-d');
+            if($expiry_date < $current_date){
+                return redirect()->back()->with('flash_message_success', 'Coupon Is Expired');
+            }
+
+            $session_id = Session::get('session_id');
+            $userCart = DB::table('carts')->where(['session_id' => $session_id])->get();
+            $total_amount = 0;
+
+            foreach($userCart as $item){
+                $total_amount = $total_amount + ($item->price * $item->quantity);
+            }
+
+            if($couponDetails->amount_type == "Fixed"){
+                  $couponAmount = $couponDetails->amount;
+            } else {
+                $couponAmount = $total_amount * ($couponDetails->amount / 100);
+            }
+
+               Session::put('CouponAmount', $couponAmount);
+            Session::put('CouponCode', $data['coupon_code']);
+
+            return redirect()->back()->with('flash_message_success', 'Coupon Applied Successfully');
+
         }
     }
 }

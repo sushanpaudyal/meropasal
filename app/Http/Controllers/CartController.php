@@ -12,6 +12,10 @@ use App\Product;
 class CartController extends Controller
 {
     public function addtoCart(Request $request){
+
+        Session::forget('CouponAmount');
+        Session::forget('CouponCode');
+
         if($request->isMethod('post')){
             $data = $request->all();
             if(empty($data['user_email'])){
@@ -55,12 +59,18 @@ class CartController extends Controller
     }
 
     public function deleteCart($id){
+        Session::forget('CouponAmount');
+        Session::forget('CouponCode');
+
         $cart = Cart::findOrFail($id);
         $cart->delete();
         return redirect()->back()->with('flash_message_success', 'Cart Item Deleted');
     }
 
     public function updateCartQuantity($id, $quantity){
+
+        Session::forget('CouponAmount');
+        Session::forget('CouponCode');
 
         $getCartDetails = DB::table('carts')->where('id', $id)->first();
         $getAttributeStock = ProductsAttribute::where('sku', $getCartDetails->product_code)->first();
