@@ -39,6 +39,7 @@ Route::post('/cart/apply-coupon', 'CouponsController@applyCoupon')->name('apply.
 
 
 Route::match(['get', 'post'], '/login-register', 'UsersController@register')->name('login.register');
+Route::get('/user-logout', 'UsersController@userlogout')->name('user.logout');
 
 //Route::get('/adminLogin', 'AdminController@login')->name('admin.login');
 Route::match(['get', 'post'], '/adminLogin', 'AdminController@login')->name('admin.login');
