@@ -20,4 +20,6 @@
 
     <link href="{{asset('public/frontpanel/css/easyzoom.css')}}" rel="stylesheet">
 
+    <link rel="stylesheet" href="{{asset('public/frontpanel/css/passtrength.css')}}">
+
 </head><!--/head-->
