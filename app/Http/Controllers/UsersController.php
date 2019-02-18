@@ -38,4 +38,15 @@ class UsersController extends Controller
         Auth::logout();
         return redirect('/');
     }
+
+    public function userLogin(Request $request){
+        if($request->isMethod('post')){
+            $data = $request->all();
+            if(Auth::attempt(['email' => $data['email'], 'password' => $data['password']])){
+                return redirect()->route('cart');
+            } else {
+                return redirect()->back()->with('flash_message_error', 'Invalid Username Solti');
+            }
+        }
+    }
 }

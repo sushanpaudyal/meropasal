@@ -14,13 +14,11 @@
                     <div class="login-form"><!--login form-->
                         <h2>Login to your account</h2>
 
-                        <form action="#">
-                            <input type="text" placeholder="Name" />
-                            <input type="email" placeholder="Email Address" />
-                            <span>
-								<input type="checkbox" class="checkbox">
-								Keep me signed in
-							</span>
+                        <form action="{{route('user.login')}}" method="post" id="loginForm" name="loginForm">
+                            @csrf
+                            <input type="email" placeholder="Email Address" name="email" id="email"/>
+                            <input type="password" placeholder="Password"  name="password" id="password"/>
+
                             <button type="submit" class="btn btn-default">Login</button>
                         </form>
                     </div><!--/login form-->
@@ -35,7 +33,7 @@
                             {{csrf_field()}}
                             <input type="text" placeholder="Name" name="name" id="name"/>
                             <input type="email" placeholder="Email Address" name="email" id="email"/>
-                            <input type="password" placeholder="Password" id="password" name="password"/>
+                            <input type="password" placeholder="Password" id="mypassword" name="password"/>
                             <button type="submit" class="btn btn-default">Signup</button>
                         </form>
                     </div><!--/sign up form-->
@@ -84,6 +82,40 @@
 
                 }
             });
+
+
+
+
+
+            $("#loginForm").validate({
+                rules: {
+
+                    email:{
+                        required: true,
+                        email: true
+                    },
+                    password:{
+                        required: true,
+                        minLength: 6
+                    }
+
+
+                } ,
+                messages : {
+
+                    email: {
+                        required: "<span class='text-danger'> Please Enter Email </span>",
+                        email: "<span class='text-danger'> Please Enter Valid Email </span>"
+                    },
+                    password:{
+                        required: "<span class='text-danger'> Please Enter Password </span>",
+                        minLength: "<span class='text-danger'> Password must be more than 6 characters </span>"
+                    }
+
+
+
+                }
+            });
         });
 
     </script>
@@ -91,7 +123,7 @@
     <script src="{{asset('public/frontpanel/js/jquery.passtrength.js')}}"></script>
 
     <script>
-         $("#password").passtrength({
+         $("#mypassword").passtrength({
              minChars: 4,
              passwordToggle: true,
              tooltip: true,
