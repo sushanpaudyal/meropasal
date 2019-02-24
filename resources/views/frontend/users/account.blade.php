@@ -28,14 +28,31 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="signup-form"><!--sign up form-->
-                        <h2>New User Signup!</h2>
-                        <form action="{{route('login.register')}}" method="post" id="registerForm" name="registerForm">
-                            {{csrf_field()}}
-                            <input type="text" placeholder="Name" name="name" id="name"/>
-                            <input type="email" placeholder="Email Address" name="email" id="email"/>
-                            <input type="password" placeholder="Password" id="mypassword" name="password"/>
-                            <button type="submit" class="btn btn-default">Signup</button>
-                        </form>
+                        <h2>Account Details</h2>
+                        <form action="{{url('/account')}}" id="accountForm" name="accountForm" method="post">
+                           @csrf
+                           <input type="text" name="name" id="name" placeholder="Name"  value="{{$userDetails->name}}"/>
+
+                           <input type="text" name="address" id="address" placeholder="Address " value="{{$userDetails->address}}"/>
+
+                           <input type="text" name="city" id="city" placeholder="City" value="{{$userDetails->city}}"/>
+
+                           <input type="text" name="state" id="state" placeholder="State" value="{{$userDetails->state}}"/>
+
+                           <select name="country" id="country">
+                               <option value="">Select Country</option>
+                               @foreach($countries as $country)
+                                   <option value="{{$country->country_name}}" @if($country->country_name == $userDetails->country) selected @endif>{{$country->country_name}}</option>
+                                   @endforeach
+                           </select>
+
+                           <input style="margin-top: 10px;" type="text" name="pincode" id="pincode" placeholder="Pin Code" value="{{$userDetails->pincode}}"/>
+
+                           <input type="text" name="mobile" id="mobile" placeholder="Mobile" value="{{$userDetails->mobile}}"/>
+
+                           <button type="submit" class="btn btn-default">Update</button>
+
+                       </form>
                     </div><!--/sign up form-->
                 </div>
             </div>
