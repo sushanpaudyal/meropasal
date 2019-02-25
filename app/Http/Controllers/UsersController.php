@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Session;
 use App\Country;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -97,5 +98,18 @@ class UsersController extends Controller
         }
 
       return view ('frontend.users.account', compact('user_id', 'userDetails', 'countries'));
+    }
+
+
+    public function chkUserPassword(Request $request){
+        $data = $request->all();
+        $current_password = $data['current_pwd'];
+        $user_id = Auth::user()->id;
+        $check_password = User::where('id', $user_id)->first();
+        if(Hash::check($current_password, $check_password->password)){
+            echo "true"; die;
+        } else {
+            echo "false"; die;
+        }
     }
 }

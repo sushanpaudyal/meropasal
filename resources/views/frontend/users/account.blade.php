@@ -12,14 +12,17 @@
                 @endif
                 <div class="col-sm-4 col-sm-offset-1">
                     <div class="login-form"><!--login form-->
-                        <h2>Login to your account</h2>
+                        <h2>Update Your Password</h2>
 
-                        <form action="{{route('user.login')}}" method="post" id="loginForm" name="loginForm">
+                        <form action="" method="post" id="passwordForm" name="passwordForm">
                             @csrf
-                            <input type="email" placeholder="Email Address" name="email" id="email"/>
-                            <input type="password" placeholder="Password"  name="password" id="password"/>
+                            <input type="password" placeholder="Current Password" name="current_pwd" id="current_pwd"/>
+                            <span id="chkPwd"></span>
+                            <input type="password" placeholder="New Password"  name="new_pwd" id="new_pwd"/>
+                            <input type="password" placeholder="Confirm Password"  name="confirm_pwd" id="confirm_pwd"/>
 
-                            <button type="submit" class="btn btn-default">Login</button>
+
+                            <button type="submit" class="btn btn-default">Update Password</button>
                         </form>
                     </div><!--/login form-->
                 </div>
@@ -64,78 +67,7 @@
 @section('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js?fbclid=IwAR0gve14W2V8EXN6DR0mdbmJ6_pcNkxyRRcUjMPer_eKY7pwwSj8E-WcaKM">
     </script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#registerForm").validate({
-                rules: {
-                    name: {
-                        required: true
-                    },
-                    email:{
-                        required: true,
-                        email: true
-                    },
-                    password:{
-                        required: true,
-                        minLength: 6
-                    }
 
-
-                } ,
-                messages : {
-                    name: {
-                        required: "<span class='text-danger'> Please Enter Name </span>"
-                    },
-                    email: {
-                        required: "<span class='text-danger'> Please Enter Email </span>",
-                        email: "<span class='text-danger'> Please Enter Valid Email </span>"
-                    },
-                    password:{
-                        required: "<span class='text-danger'> Please Enter Password </span>",
-                        minLength: "<span class='text-danger'> Password must be more than 6 characters </span>"
-                    }
-
-
-
-                }
-            });
-
-
-
-
-
-            $("#loginForm").validate({
-                rules: {
-
-                    email:{
-                        required: true,
-                        email: true
-                    },
-                    password:{
-                        required: true,
-                        minLength: 6
-                    }
-
-
-                } ,
-                messages : {
-
-                    email: {
-                        required: "<span class='text-danger'> Please Enter Email </span>",
-                        email: "<span class='text-danger'> Please Enter Valid Email </span>"
-                    },
-                    password:{
-                        required: "<span class='text-danger'> Please Enter Password </span>",
-                        minLength: "<span class='text-danger'> Password must be more than 6 characters </span>"
-                    }
-
-
-
-                }
-            });
-        });
-
-    </script>
 
     <script src="{{asset('public/frontpanel/js/jquery.passtrength.js')}}"></script>
 
@@ -147,5 +79,33 @@
              eyeImg: "http://localhost:8888/meropasal/public/frontpanel/images/eye.svg"
          });
 
+    </script>
+
+
+
+
+    <script>
+        $("#current_pwd").keyup(function(){
+              var current_pwd = $(this).val();
+              // alert(current_pwd);
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: 'check-user-pwd',
+                data: {current_pwd:current_pwd},
+                success: function (resp){
+                    // alert(resp);
+                    if(resp=="false"){
+                        $("#chkPwd").html("<font color='red'> Current Password Does Not Match </font>")
+                    } else if(resp == "true"){
+                        $("#chkPwd").html("<font color='green'> Current Password Matched </font>")
+                    }
+                }, error: function(){
+                    alert("Error");
+                }
+            });
+        });
     </script>
 @endsection
