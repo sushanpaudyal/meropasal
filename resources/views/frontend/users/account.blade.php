@@ -4,17 +4,17 @@
     <section id="form" style="margin-top: 0px;"><!--form-->
         <div class="container">
             <div class="row">
-                @if(Session::has('flash_message_error'))
+                @if(Session::has('flash_message_success'))
                     <div class="alert alert-danger alert-block">
                         <button type="button" class="close" data-dismiss="alert">×</button>
-                        <strong>{!! session('flash_message_error') !!}</strong>
+                        <strong>{!! session('flash_message_success') !!}</strong>
                     </div>
                 @endif
                 <div class="col-sm-4 col-sm-offset-1">
                     <div class="login-form"><!--login form-->
                         <h2>Update Your Password</h2>
 
-                        <form action="" method="post" id="passwordForm" name="passwordForm">
+                        <form action="{{url('/update-user-pwd')}}" method="post" id="passwordForm" name="passwordForm">
                             @csrf
                             <input type="password" placeholder="Current Password" name="current_pwd" id="current_pwd"/>
                             <span id="chkPwd"></span>
@@ -107,5 +107,32 @@
                 }
             });
         });
+    </script>
+
+
+    <script>
+        $("#passwordForm").validate({ 
+            rules:{ 
+                current_pwd:{ 
+                    required: true, 
+                    minlength:4, 
+                    maxlength:20         }, 
+                new_pwd:{ 
+                    required: true, 
+                    minlength:6, 
+                    maxlength:20         }, 
+                confirm_pwd:{ 
+                    required:true, 
+                    minlength:6, 
+                    maxlength:20, 
+                    equalTo:"#new_pwd" 
+                }     }, 
+            errorClass: "help-inline", 
+            errorElement: "span", 
+            highlight:function(element, errorClass, validClass) { 
+                $(element).parents('.control-group').addClass('error'); 
+                },     unhighlight: function(element, errorClass, validClass) { 
+                $(element).parents('.control-group').removeClass('error'); 
+                $(element).parents('.control-group').addClass('success');     } });
     </script>
 @endsection

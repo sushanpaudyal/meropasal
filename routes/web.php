@@ -50,6 +50,7 @@ Route::group(['middleware' => ['frontlogin']], function(){
   Route::match(['get', 'post'], '/account', 'UsersController@account')->name('account');
 
   Route::post('/check-user-pwd', 'UsersController@chkUserPassword');
+  Route::post('/update-user-pwd', 'UsersController@updatePassword');
 });
 
 
